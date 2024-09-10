@@ -1,0 +1,67 @@
+{% include "header.html" %}
+    <div class="mpage" id="ud">
+      <div class="box">
+        <br />
+        <a
+          style="text-decoration: none; color: white; font-weight: bold"
+          href="/safemov/video/"
+        >
+          <h3>Video upload</h3>
+
+          <h3>
+            <i class="material-icons" style="font-size: 60px; color: lightblue"
+              >upload_file</i
+            >
+          </h3>
+        </a>
+      </div>
+
+      <div class="box">
+        <br />
+        <div>All Pdf files</div>
+        <h3>Total</h3>
+        <h1>{{ pdf_list|length }}</h1>
+      </div>
+    </div>
+    <div class="search_wrapper">
+      <div class="search_box">
+        <form action="" method="get">
+          <input
+            type="text"
+            placeholder="Search pdf.."
+            name="search_input"
+            value="{{search_input}}"
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+    <!-- {% for pdf in pdf_list %}
+      pdfs{{pdf}}
+      {% endfor %} -->
+    <br>
+    <h1 id="h">PDF Files</h1>
+    <div id="history" class="page">
+
+      
+      
+      {% for pdf in pdf_list %}
+      <div class="pdf_file_box">
+        <span> <img src="https://img.icons8.com/?size=40&id=13593&format=png&color=000000" alt="PDF Icon"></span>
+        <span class="pdf_data">{{pdf.id}}.pdf</span>
+        <span class="pdf_data">{{pdf.name}}</span>
+        <span class="pdf_data">{{pdf.originAddress}}-{{pdf.destinationAddress}}</span>
+        <p class="pdf_data">{{pdf.created_at}}</p>
+        <a target="_blank" href="{{pdf.pdf_url}}" download="{{pdf.id}}">
+            <span id="d-icon"><img src="https://img.icons8.com/?size=40&id=VyLhj9u6uACE&format=png&color=000000" alt="icon"></span>
+          </h5>
+        </a>
+      </div>
+      {%empty%}
+      <span class="page"> No Pdf Found</span>
+      {% endfor %}
+    </div>
+
+   
+  </body>
+</html>

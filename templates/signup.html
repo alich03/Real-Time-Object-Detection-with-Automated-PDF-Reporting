@@ -1,0 +1,79 @@
+<!-- signup.html -->
+{% include "header.html" %}
+    <style>
+        body{
+        background-color: rgb(19, 3, 107);
+    }
+        .signup-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 100px;
+            margin-left: 500px;
+}
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .signup-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .signup-container input[type="email"],
+        .signup-container input[type="text"],
+        .signup-container input[type="password"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .signup-container button {
+            padding: 10px;
+            background-color: #090361;
+            border: none;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .signup-container button:hover {
+            background-color: #1006a1;
+        }
+      
+      
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.password.label_tag }}
+            {{ form.password }}
+<br>
+            <button type="submit">Sign Up</button>
+        </form>
+
+        {% if form.non_field_errors %}
+        <div style="color: red;">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    </div>
+
+</body>
+</html>

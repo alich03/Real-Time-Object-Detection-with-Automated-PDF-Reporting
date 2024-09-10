@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safemove Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="icon" href="/static/logo/tb_logo.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+
+      }
+      .navbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 20px;
+          background-color: #054b6b;
+          border-bottom: 1px solid #ddd;
+      }
+      .navbar-logo {
+          font-size: 24px;
+      }
+      
+      .navbar-menu {
+          display: flex;
+          list-style: none;
+      }
+      .navbar-menu li {
+          margin: 0 15px;
+      }
+      .navbar-menu a {
+          text-decoration: none;
+          color: #ffffff;
+          font-size: 16px;
+          font-weight: bold;
+          padding: 20px;
+      }
+      .navbar-menu a:hover, .navbar-menu a.active {
+          color: #c4d6f7;
+          background-color: #090361;
+          border-radius: 5px;
+      }
+      .navbar-icons {
+          display: flex;
+          align-items: center;
+      }
+      .navbar-icons a {
+          margin-left: 10px;
+          font-size: 20px;
+          color: #333;
+          text-decoration: none;
+      }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+      <div class="navbar-logo">
+          <a href="/"><img src="/static/logo/logo.jpeg" alt="" style="width: 100px;"></a>
+      </div>
+      <ul class="navbar-menu">
+          <li><a href="/" {% if request.path == '/' %} class="active" {% endif %} >HOME</a></li>
+          <li><a href="#history">HISTORY</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          {% if request.session.uid %}
+          <span style="color: white;"> Welcome {{request.session.username|capfirst}} !</span>
+          <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+           {% else %}
+           <li><a href="{% url 'login' %}" {% if request.path == '/safemov/login/' %} class="active" {% endif %}  >LOGIN</a></li>
+           <li><a href="/safemov/signup/"  {% if request.path == '/safemov/signup/' %} class="active" {% endif %} >SIGNUP</a></li>
+    {% endif %}
+
+      </ul>
+      
+  </nav>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

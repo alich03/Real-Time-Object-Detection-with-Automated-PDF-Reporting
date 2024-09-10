@@ -1,0 +1,77 @@
+<!-- login.html -->
+{% include "header.html" %}
+
+</head>
+<style>
+    body{
+        background-color: rgb(19, 3, 107);
+    }
+    .login-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-top: 100px;
+    margin-left: 500px;
+}
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+.login-container label {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.login-container button {
+    padding: 10px;
+    background-color: #090361;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.login-container button:hover {
+    background-color: #0c0479;
+}
+
+
+</style>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            <br>
+            <button type="submit">Sign In</button>
+        </form>
+
+        {% if form.non_field_errors %}
+        <div style="color: red;">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+       
+    </div>
+</body>
+</html>
